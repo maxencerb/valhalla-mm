@@ -1,0 +1,16 @@
+{
+  "name": "valhalla-mm",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@mangrovedao/mgv": "^0.9.24",
+    "viem": "^2.31.4"
+  }
+}
