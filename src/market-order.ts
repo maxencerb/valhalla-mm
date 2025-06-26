@@ -38,7 +38,7 @@ type MarketOrderProps = {
  * @param props MarketOrderProps object containing all order parameters
  * @returns Promise<{receipt: any, result: any}> Transaction receipt and order result
  * @throws Error if market order fails or approval fails
- * 
+ *
  * @example
  * ```typescript
  * // Buy 1 MEGA for USDC
@@ -49,7 +49,7 @@ type MarketOrderProps = {
  *   bs: BS.buy,
  *   maxPrice: 100, // max price of 100 USDC per MEGA
  * });
- * 
+ *
  * // Sell MEGA for 1 USDC
  * const result = await marketOrder({
  *   fillVolume: parseUnits("1", 6), // 1 USDC (6 decimals)
@@ -76,7 +76,7 @@ export async function marketOrder(props: MarketOrderProps) {
     // convert to tick
     const tick = tickFromPrice(rawPrice, market.tickSpacing);
     // reverse tick on buy
-    return bs === BS.buy ? -tick : tick;
+    return bs === BS.sell ? -tick : tick;
   })();
 
   if (!skipApprovalCheck) {

@@ -60,7 +60,7 @@ type LimitOrderProps = {
  * @param props LimitOrderProps object containing all order parameters
  * @returns Promise<{receipt: any, result: any}> Transaction receipt and order result with offer details
  * @throws Error if limit order fails or approval fails
- * 
+ *
  * @example
  * ```typescript
  * // Place a buy limit order for 10 MEGA at 0.1 USDC per MEGA
@@ -72,7 +72,7 @@ type LimitOrderProps = {
  *   price: 0.1,
  *   orderType: Order.PO, // Post only order
  * });
- * 
+ *
  * // Place a sell limit order for 5 MEGA at 0.2 USDC per MEGA
  * const { result } = await limitOrder({
  *   market: MEGA_USDC,
@@ -117,12 +117,12 @@ export async function limitOrder(props: LimitOrderProps) {
 
   const olKeys = getSemibooksOLKeys(market);
   const olKey = bs === BS.buy ? olKeys.asksMarket : olKeys.bidsMarket;
+  
 
   const rawPrice = humanPriceToRawPrice(price, market);
-  // convert to tick
   let tick = tickFromPrice(rawPrice, market.tickSpacing);
   // reverse tick on buy
-  if (bs === BS.buy) {
+  if (bs === BS.sell) {
     tick = -tick;
   }
 
@@ -188,7 +188,7 @@ type CancelLimitOrderProps = {
  * @param props CancelLimitOrderProps object containing cancellation parameters
  * @returns Promise<{receipt: any, result: any}> Transaction receipt and cancellation result
  * @throws Error if cancellation fails
- * 
+ *
  * @example
  * ```typescript
  * // Cancel a limit order and deprovision it
@@ -198,7 +198,7 @@ type CancelLimitOrderProps = {
  *   offerId: result.offer.id,
  *   deprovision: true,
  * });
- * 
+ *
  * // Cancel without deprovisioning (keeps funds locked)
  * await cancelLimitOrder({
  *   market: MEGA_USDC,
